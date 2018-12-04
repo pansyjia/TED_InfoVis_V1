@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
     data.forEach(function(d,i)
       {
         //FORMATTING NEEDED HERE!!!!///
-        if (d['tags'].split(',')[0] == category && counter <= 4) //if there is a match, display link & tite of talk
+        if (d['tags'].split(',')[0] == category && counter <= 2) //if there is a match, display link & tite of talk
         {
           list += '<br>';
           list += ("<b>Title:</b> " + (d['title']));
@@ -72,8 +72,48 @@ document.addEventListener('DOMContentLoaded', function () {
         list += '<br>';
           list += (" <b>Views:</b> " + d['views']);
         list += '<br>';
-          list += (" <a href= " + d['url']) + ">Click to Watch</a>";
+          list += (" <a href= " + d['url'] + ">Click to Watch</a>");
         list += '<br>';
+
+        ///14 ratings
+        list += '<br>';
+        list += ("<b>Beautiful:</b> " + (d['Beautiful']));
+      list += '<br>';
+        list += (" <b>Confusing:</b> " + d['Confusing']);
+      list += '<br>';
+        list += (" <b>Courageous:</b> " + d['Courageous']);
+      list += '<br>';
+        list += (" <b>Fascinating:</b> " + d['Fascinating']);
+      list += '<br>';
+
+      list += '<br>';
+      list += ("<b>Funny:</b> " + (d['Funny']));
+    list += '<br>';
+      list += (" <b>Informative:</b> " + d['Informative']);
+    list += '<br>';
+      list += (" <b>Ingenious:</b> " + d['Ingenious']);
+    list += '<br>';
+      list += (" <b>Inspiring:</b> " + d['Inspiring']);
+    list += '<br>';
+
+    list += '<br>';
+        list += ("<b>Jaw-dropping:</b> " + (d['Jaw-dropping']));
+      list += '<br>';
+        list += (" <b>Longwinded:</b> " + d['Longwinded']);
+      list += '<br>';
+        list += (" <b>OK:</b> " + d['OK']);
+      list += '<br>';
+        list += (" <b>Obnoxious:</b> " + d['Obnoxious']);
+      list += '<br>';
+      list += '<br>';
+      list += (" <b>Persuasive:</b> " + d['Persuasive']);
+    list += '<br>';
+      list += (" <b>Unconvincing:</b> " + d['Unconvincing']);
+    list += '<br>';
+
+
+
+
 
         item_array.push(list);
         counter += 1;
