@@ -6,6 +6,26 @@
   //var rectWidth = 15;       //sets rectWidth variable to be 20
 
 
+  var category_colors = {
+    "Beautiful": "orange",
+    "Courageous": "orange",
+    "Fascinating": "orange",
+    "Funny": "orange",
+    "Informative'": "orange",
+    "Ingenious": "orange",
+    "Inspiring": "orange",
+    "Jaw.dropping": "orange",
+    "Persuasive": "orange",
+    "Confusing": "blue",
+    "Longwinded": "blue",
+    "Obnoxious": "#blue",
+    "Unconvincing": "blue",
+    "OK": "yellow"
+  }
+
+
+  // var rating_names = ["Beautiful","Confusing","Courageous","Fascinating","Funny","Informative","Ingenious","Inspiring","Jaw.dropping","Longwinded","OK","Obnoxious","Persuasive","Unconvincing"]
+  
   var data = [];
   var val
   var talk_categories = ["art"];
@@ -81,14 +101,15 @@
     ////////////////////////////////////////////////////////////////////////////////////////
     ///////////////End///////////////////
 
-    var x = d3.scaleBand().range([0, width]).padding(0.1);
-
+    var x = d3.scaleBand().range([0, width]).padding(0.3);
+////////////////////////////////////////////////////////////////////////////////////////
     var y = d3.scaleLinear().range([height, 0]);
 
 
     var counter = 0;
     var item_array;
-    var rating_names = ["Beautiful","Confusing","Courageous","Fascinating","Funny","Informative","Ingenious","Inspiring","Jaw.dropping","Longwinded","OK","Obnoxious","Persuasive","Unconvincing"]
+    var rating_names = ["Beautiful","Confusing","Courageous","Fascinating","Funny","Informative","Ingenious","Inspiring","Jaw.dropping","Longwinded","OK","Obnoxious","Persuasive","Unconvincing"];
+   
 
     data.forEach(function(d,i)
               {
@@ -146,9 +167,9 @@
                 .data(dict)
                 .enter().append("rect")
                 .attr("class", "bar")
-                .attr("fill", "#5b717c")
+                .attr("fill", function (d) {return category_colors[d.key]})
                 .attr("x", function (d) { return x(d.key); })
-                .attr("width", 10)
+                .attr("width", x.bandwidth())
                 .attr("y", function (d) { return y(d.value); })
                 .attr("height", function (d) { return height - y(d.value); })
 
