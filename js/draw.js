@@ -49,6 +49,19 @@
              // console.log(getTopTalks('art',data));
 
           });
+          d3.select('.select') //update list on change of category
+            .on('change', function() {
+              selectValue = d3.select('select').property('value');
+              d3.select('#list').html("");
+              console.log(selectValue);
+              getTopTalks(selectValue, data);
+              // d3.select('#list')
+              // .append('p')
+              // // .text(function() { console.log(getTopTalks(selectValue, data)); return getTopTalks(selectValue, data); });
+              // .html(getTopTalks(selectValue, data));
+
+          });
+
 
 
   }
@@ -58,12 +71,14 @@
   function getTopTalks(category, data)
   {
     console.log(category);
-    list = "";
+
     var counter = 0;
-    var item_array = [];
+    var item_array;
     data.forEach(function(d,i)
               {
                 //FORMATTING NEEDED HERE!!!!///
+                item_array = [];
+                list = "";
 
                 if (d['tags'].split(',')[0] == category && counter <= 4) //if there is a match, display link & tite of talk
                 {
@@ -77,14 +92,24 @@
                   list += (" Link: " + d['url']);
                 list += '<br>';
 
+
+                talk_info = d3.select('#list').append("p").attr("class","talk_info")
+                talk_chart = d3.select('#list').append("div").attr("class","talk_chart")
                 item_array.push(list);
+                talk_info.html(list);
+
+
+
                 counter += 1;
                 }
 
               });
-              console.log(counter)
 
-              return list;
+
+            //  console.log(counter)
+
+              //return list;
+
 
   }
 
@@ -111,17 +136,17 @@
     .append('option')
       .text(function (d, i) { return (talk_categories[i]); });
 
-  d3.select('.select') //update list on change of category
-    .on('change', function() {
-      selectValue = d3.select('select').property('value');
-      d3.select('#list').html("");
-      console.log(selectValue);
-      d3.select('#list')
-      .append('p')
-      // .text(function() { console.log(getTopTalks(selectValue, data)); return getTopTalks(selectValue, data); });
-      .html(getTopTalks(selectValue, data));
-      d3.select('#list').append('div');
-  });
+  // d3.select('.select') //update list on change of category
+  //   .on('change', function() {
+  //     selectValue = d3.select('select').property('value');
+  //     d3.select('#list').html("");
+  //     console.log(selectValue);
+  //     d3.select('#list')
+  //     .append('p')
+  //     // .text(function() { console.log(getTopTalks(selectValue, data)); return getTopTalks(selectValue, data); });
+  //     .html(getTopTalks(selectValue, data));
+
+  // });
 
   }
 
