@@ -11,7 +11,7 @@
     "Courageous": "#DFD041",
     "Fascinating": "#39CEF4",
     "Funny": "#F97F33",
-    "Informative'": "#D441A2",
+    "Informative": "#D441A2",
     "Ingenious": "#C27F25",
     "Inspiring": "#E04364",
     "Jaw.dropping": "#5EB731",
