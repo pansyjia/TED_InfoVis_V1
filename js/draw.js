@@ -75,51 +75,65 @@ document.addEventListener('DOMContentLoaded', function () {
           list += (" <a href= " + d['url'] + ">Click to Watch</a>");
         list += '<br>';
 
+        var bar_data = [{key: "Beautiful", value:d['Beautiful']},{key: "Beautiful", value:d['Beautiful']},{key: "Beautiful", value:d['Beautiful']}]
+
+       
+
+      //   function groupDataByYear() {
+      //     var groupedData = d3.nest()
+      //         .key(function (d) { return d.year })
+      //         .rollup(function (v) { return d3.sum(v, function (d) { return d.n; }) })
+      //         .entries(data);
+      //     return groupedData;
+      // }
         ///14 ratings
-        list += '<br>';
-        list += ("<b>Beautiful:</b> " + (d['Beautiful']));
-      list += '<br>';
-        list += (" <b>Confusing:</b> " + d['Confusing']);
-      list += '<br>';
-        list += (" <b>Courageous:</b> " + d['Courageous']);
-      list += '<br>';
-        list += (" <b>Fascinating:</b> " + d['Fascinating']);
-      list += '<br>';
+    //     list += '<br>';
+    //     list += ("<b>Beautiful:</b> " + (d['Beautiful']));
+    //   list += '<br>';
+    //     list += (" <b>Confusing:</b> " + d['Confusing']);
+    //   list += '<br>';
+    //     list += (" <b>Courageous:</b> " + d['Courageous']);
+    //   list += '<br>';
+    //     list += (" <b>Fascinating:</b> " + d['Fascinating']);
+    //   list += '<br>';
 
-      list += '<br>';
-      list += ("<b>Funny:</b> " + (d['Funny']));
-    list += '<br>';
-      list += (" <b>Informative:</b> " + d['Informative']);
-    list += '<br>';
-      list += (" <b>Ingenious:</b> " + d['Ingenious']);
-    list += '<br>';
-      list += (" <b>Inspiring:</b> " + d['Inspiring']);
-    list += '<br>';
+    //   list += '<br>';
+    //   list += ("<b>Funny:</b> " + (d['Funny']));
+    // list += '<br>';
+    //   list += (" <b>Informative:</b> " + d['Informative']);
+    // list += '<br>';
+    //   list += (" <b>Ingenious:</b> " + d['Ingenious']);
+    // list += '<br>';
+    //   list += (" <b>Inspiring:</b> " + d['Inspiring']);
+    // list += '<br>';
 
-    list += '<br>';
-        list += ("<b>Jaw-dropping:</b> " + (d['Jaw-dropping']));
-      list += '<br>';
-        list += (" <b>Longwinded:</b> " + d['Longwinded']);
-      list += '<br>';
-        list += (" <b>OK:</b> " + d['OK']);
-      list += '<br>';
-        list += (" <b>Obnoxious:</b> " + d['Obnoxious']);
-      list += '<br>';
-      list += '<br>';
-      list += (" <b>Persuasive:</b> " + d['Persuasive']);
-    list += '<br>';
-      list += (" <b>Unconvincing:</b> " + d['Unconvincing']);
-    list += '<br>';
-
-
+    // list += '<br>';
+    //     list += ("<b>Jaw-dropping:</b> " + (d['Jaw-dropping']));
+    //   list += '<br>';
+    //     list += (" <b>Longwinded:</b> " + d['Longwinded']);
+    //   list += '<br>';
+    //     list += (" <b>OK:</b> " + d['OK']);
+    //   list += '<br>';
+    //     list += (" <b>Obnoxious:</b> " + d['Obnoxious']);
+    //   list += '<br>';
+    //   list += '<br>';
+    //   list += (" <b>Persuasive:</b> " + d['Persuasive']);
+    // list += '<br>';
+    //   list += (" <b>Unconvincing:</b> " + d['Unconvincing']);
+    // list += '<br>';
 
 
+
+
+    console.log("test data:" + bar_data)
 
         item_array.push(list);
         counter += 1;
         }
 
       });
+      
+      
               return list;
             
   }
@@ -167,60 +181,60 @@ document.addEventListener('DOMContentLoaded', function () {
   
 
 
-  function visualizeBarChart(dataitems) {
-    var margin = { top: 20, right: 20, bottom: 30, left: 60 },
-        width = 940 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+//   function visualizeBarChart(dataitems) {
+//     var margin = { top: 20, right: 20, bottom: 30, left: 60 },
+//         width = 940 - margin.left - margin.right,
+//         height = 500 - margin.top - margin.bottom;
 
-    var x = d3.scaleBand()
-        .domain(dataitems.map(function (d) { return d.key; }))
-        .range([0, width])
-        .padding(0.1);
+//     var x = d3.scaleBand()
+//         .domain(dataitems.map(function (d) { return d.key; }))
+//         .range([0, width])
+//         .padding(0.1);
 
-    var y = d3.scaleLinear()
-        .domain([0, d3.max(dataitems, function (d) { return d.value; })])
-        .range([height, 0]);
+//     var y = d3.scaleLinear()
+//         .domain([0, d3.max(dataitems, function (d) { return d.value; })])
+//         .range([height, 0]);
 
-    var tooltip = d3.select("body").append("div").attr("class", "toolTip");
-    //NEW
+//     var tooltip = d3.select("body").append("div").attr("class", "toolTip");
+//     //NEW
 
-    var svg = d3.select("#chart1").append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform",
-        "translate(" + margin.left + "," + margin.top + ")");
+//     var svg = d3.select("#chart1").append("svg")
+//         .attr("width", width + margin.left + margin.right)
+//         .attr("height", height + margin.top + margin.bottom)
+//         .append("g")
+//         .attr("transform",
+//         "translate(" + margin.left + "," + margin.top + ")");
 
-    svg.selectAll(".bar")
-        .data(dataitems)
-        .enter().append("rect")
-        .attr("class", "bar")
-        .attr("fill", "#5b717c")
-        .attr("x", function (d) { return x(d.key); })
-        .attr("width", x.bandwidth())
-        .attr("y", function (d) { return y(d.value); })
-        .attr("height", function (d) { return height - y(d.value); })
-        .attr("opacity", "0.7")
-        .on("mousemove", function (d) {
-                d3.select(this).attr("opacity", "1");
-                tooltip.style("left", d3.event.pageX - 50 + "px")
-                    .style("top", d3.event.pageY - 70 + "px")
-                    .style("display", "inline-block")
-                    .html("<b>" +(d.key) + "</b> : " + (d.value));
-        })
-        .on("mouseout", function (d) {
-                d3.select(this).attr("opacity", "0.7");
-                tooltip.style("display", "none");
-        });
+//     svg.selectAll(".bar")
+//         .data(dataitems)
+//         .enter().append("rect")
+//         .attr("class", "bar")
+//         .attr("fill", "#5b717c")
+//         .attr("x", function (d) { return x(d.key); })
+//         .attr("width", x.bandwidth())
+//         .attr("y", function (d) { return y(d.value); })
+//         .attr("height", function (d) { return height - y(d.value); })
+//         .attr("opacity", "0.7")
+//         .on("mousemove", function (d) {
+//                 d3.select(this).attr("opacity", "1");
+//                 tooltip.style("left", d3.event.pageX - 50 + "px")
+//                     .style("top", d3.event.pageY - 70 + "px")
+//                     .style("display", "inline-block")
+//                     .html("<b>" +(d.key) + "</b> : " + (d.value));
+//         })
+//         .on("mouseout", function (d) {
+//                 d3.select(this).attr("opacity", "0.7");
+//                 tooltip.style("display", "none");
+//         });
 
-    // add the x Axis
-    svg.append("g")
-        .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x));
+//     // add the x Axis
+//     svg.append("g")
+//         .attr("transform", "translate(0," + height + ")")
+//         .call(d3.axisBottom(x));
 
-    // add the y Axis
-    svg.append("g")
-        .call(d3.axisLeft(y));
+//     // add the y Axis
+//     svg.append("g")
+//         .call(d3.axisLeft(y));
 
 
-}
+// }
