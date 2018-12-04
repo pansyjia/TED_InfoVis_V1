@@ -8,7 +8,7 @@
   var data = [];
   var val
   var talk_categories = ["art"];
-  var list = "";
+
   var selectValue = "3d printing";
 
   $(document).ready(function () {
@@ -48,19 +48,18 @@
               //console.log(talk_categories[0]);
              // console.log(getTopTalks('art',data));
 
-          });
-          d3.select('.select') //update list on change of category
-            .on('change', function() {
-              selectValue = d3.select('select').property('value');
-              d3.select('#list').html("");
-              console.log(selectValue);
-              getTopTalks(selectValue, data);
-              // d3.select('#list')
-              // .append('p')
-              // // .text(function() { console.log(getTopTalks(selectValue, data)); return getTopTalks(selectValue, data); });
-              // .html(getTopTalks(selectValue, data));
+             d3.select('.select') //update list on change of category
+               .on('change', function() {
+
+                 selectValue = d3.select('select').property('value');
+                 d3.select('#list').html("");
+                 console.log(selectValue);
+                 getTopTalks(selectValue, data);
+
+             });
 
           });
+
 
 
 
@@ -71,17 +70,45 @@
   function getTopTalks(category, data)
   {
     console.log(category);
+    //set up margin and scale
+    var margin = { top: 20, right: 20, bottom: 30, left: 60 },
+        width = 500 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+
+    var x = d3.scaleBand()
+        // .domain(data.map(function (d) { return d.key; }))
+        .range([0, width])
+        .padding(0.1);
+
+    var y = d3.scaleLinear()
+        //.domain([0, d3.max(data, function (d) { return d.value; })])
+        // .domain([0, 500])
+        .range([height, 0]);
 
     var counter = 0;
     var item_array;
+    var rating_names = ["Beautiful","Confusing","Courageous","Fascinating","Funny","Informative","Ingenious","Inspiring","Jaw.dropping","Longwinded","OK","Obnoxious","Persuasive","Unconvincing"]
+
     data.forEach(function(d,i)
               {
-                //FORMATTING NEEDED HERE!!!!///
-                item_array = [];
-                list = "";
+                var dict = [];
+
 
                 if (d['tags'].split(',')[0] == category && counter <= 4) //if there is a match, display link & tite of talk
-                {
+                { item_array=[];
+                  var list = "";
+
+                  for (i=0;i<rating_names.length;i++){
+                    dict.push({
+                        key:   rating_names[i],
+                        value: parseInt(d[rating_names[i]])
+                    });
+                  }
+                  console.log(dict)
+
+
+
+                  //create list
                   list += '<br>';
                   list += ("Title: " + (d['title']));
                 list += '<br>';
@@ -89,7 +116,7 @@
                 list += '<br>';
                   list += (" Views: " + d['views']);
                 list += '<br>';
-                  list += (" Link: " + d['url']);
+                  list += (" <a href= " + d['url'] + ">Click to Watch</a>");
                 list += '<br>';
 
 
@@ -97,6 +124,33 @@
                 talk_chart = d3.select('#list').append("div").attr("class","talk_chart")
                 item_array.push(list);
                 talk_info.html(list);
+                var svg = talk_chart.append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+
+              //x.domain(data.map(function (d) { return d.key; }));
+              x.domain(['a','b','c']);
+              //y.domain([0, d3.max(data, function (d) { return d.value; })]);
+              y.domain([0, 500]);
+
+                svg.selectAll(".bar")
+                .data(dict)
+                .enter().append("rect")
+                .attr("class", "bar")
+                .attr("fill", "#5b717c")
+                .attr("x", function (d) { return x(d.key); })
+                //.attr("x",10)
+                .attr("width", 10)
+                .attr("y", function (d) { return y(d.value); })
+                //.attr("y", 200)
+                .attr("height", function (d) { return height - y(d.value); })
+
+                // svg.append("div")
+                // .data(dict)
+                // .html(function (d) { return d.key; })
+
 
 
 
@@ -136,17 +190,6 @@
     .append('option')
       .text(function (d, i) { return (talk_categories[i]); });
 
-  // d3.select('.select') //update list on change of category
-  //   .on('change', function() {
-  //     selectValue = d3.select('select').property('value');
-  //     d3.select('#list').html("");
-  //     console.log(selectValue);
-  //     d3.select('#list')
-  //     .append('p')
-  //     // .text(function() { console.log(getTopTalks(selectValue, data)); return getTopTalks(selectValue, data); });
-  //     .html(getTopTalks(selectValue, data));
-
-  // });
 
   }
 
