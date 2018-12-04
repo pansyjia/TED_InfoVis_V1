@@ -165,3 +165,62 @@ document.addEventListener('DOMContentLoaded', function () {
   
   });
   
+
+
+  function visualizeBarChart(dataitems) {
+    var margin = { top: 20, right: 20, bottom: 30, left: 60 },
+        width = 940 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+
+    var x = d3.scaleBand()
+        .domain(dataitems.map(function (d) { return d.key; }))
+        .range([0, width])
+        .padding(0.1);
+
+    var y = d3.scaleLinear()
+        .domain([0, d3.max(dataitems, function (d) { return d.value; })])
+        .range([height, 0]);
+
+    var tooltip = d3.select("body").append("div").attr("class", "toolTip");
+    //NEW
+
+    var svg = d3.select("#chart1").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform",
+        "translate(" + margin.left + "," + margin.top + ")");
+
+    svg.selectAll(".bar")
+        .data(dataitems)
+        .enter().append("rect")
+        .attr("class", "bar")
+        .attr("fill", "#5b717c")
+        .attr("x", function (d) { return x(d.key); })
+        .attr("width", x.bandwidth())
+        .attr("y", function (d) { return y(d.value); })
+        .attr("height", function (d) { return height - y(d.value); })
+        .attr("opacity", "0.7")
+        .on("mousemove", function (d) {
+                d3.select(this).attr("opacity", "1");
+                tooltip.style("left", d3.event.pageX - 50 + "px")
+                    .style("top", d3.event.pageY - 70 + "px")
+                    .style("display", "inline-block")
+                    .html("<b>" +(d.key) + "</b> : " + (d.value));
+        })
+        .on("mouseout", function (d) {
+                d3.select(this).attr("opacity", "0.7");
+                tooltip.style("display", "none");
+        });
+
+    // add the x Axis
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+
+    // add the y Axis
+    svg.append("g")
+        .call(d3.axisLeft(y));
+
+
+}
