@@ -56,32 +56,36 @@ document.addEventListener('DOMContentLoaded', function () {
   function getTopTalks(category, data)
   {
     console.log(category);
+
     list = "";
     var counter = 0;
-     data.forEach(function(d,i)
-              {
-         
-  
-                //FORMATTING NEEDED HERE!!!!///
-  
-                if (d['tags'].split(',')[0] == category) //if there is a match, display link & tite of talk
-                {
-                  list += '<br>';
-                  list += ("Title: " + (d['title']));
-                list += '<br>';
-                  list += (" Speaker: " + d['main_speaker']);
-                list += '<br>';
-                  list += (" Views: " + d['views']);
-                list += '<br>';
-                  list += (" Link: " + d['url']);
-                list += '<br>';
-                }
-              });
-  
+    var item_array = [];
+    data.forEach(function(d,i)
+      {
+        //FORMATTING NEEDED HERE!!!!///
+        if (d['tags'].split(',')[0] == category && counter <= 4) //if there is a match, display link & tite of talk
+        {
+          list += '<br>';
+          list += ("<b>Title:</b> " + (d['title']));
+        list += '<br>';
+          list += (" <b>Speaker:</b> " + d['main_speaker']);
+        list += '<br>';
+          list += (" <b>Views:</b> " + d['views']);
+        list += '<br>';
+          list += (" <a href= " + d['url']) + ">Click to Watch</a>";
+        list += '<br>';
+
+        item_array.push(list);
+        counter += 1;
+        }
+
+      });
               return list;
             
   }
 
+
+  
 
   
   function setDropdownOptions(data)
