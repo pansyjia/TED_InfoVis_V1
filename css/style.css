@@ -116,3 +116,6 @@ svg
     padding: 14px;
     text-align: center;
 }
+.highlight{
+   opacity: 1 !important;
+}

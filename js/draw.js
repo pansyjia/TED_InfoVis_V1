@@ -163,22 +163,25 @@ function getTopTalks(category, data) {
         .data(dict)
         .enter().append("rect")
         .attr("class", "bar")
+        .attr("id", function(d) {
+          return d.key;
+        })
         .style("fill", function(d) {
           return category_colors[d.key]
         })
         .attr("x", function(d) {
           return x(d.key);
         })
-        .attr("width", 10)
+        .attr("width", x.bandwidth())
         .attr("y", function(d) {
           return y(d.value);
         })
         .attr("height", function(d) {
           return height - y(d.value);
         })
-        .attr("opacity", "0.7")
+        .attr("opacity", "0.6")
         .on("mousemove", function(d) {
-          d3.select(this).attr("opacity", "1");
+          $("[id= '" + d.key + "']").addClass("highlight");
           tooltip
             .style("left", d3.event.pageX - 80 + "px")
             .style("top", d3.event.pageY - 100 + "px")
@@ -186,7 +189,7 @@ function getTopTalks(category, data) {
             .html("<b>" + (d.key) + "</b> : " + (d.value));
         })
         .on("mouseout", function(d) {
-          d3.select(this).attr("opacity", "0.7");
+          $("[id= '" + d.key + "']").removeClass("highlight");
           tooltip.style("display", "none");
         });
 
