@@ -6,25 +6,6 @@
   //var rectWidth = 15;       //sets rectWidth variable to be 20
 
 
-  var category_colors = {
-    // implement this based on what we did in class
-    "": { desc: "Married", color: "#5B7BE9" },
-    "Beautiful": { desc: "Own children in Household", color: "#E0D22E" },
-    "Confusing": { desc: "Has Healthcare Coverage", color: "#2CCEF6" },
-    "Courageous": { desc: "Bachelor's Degree or More", color: "#FB7F23" },
-    // "employed": { desc: "Employed", color: "#D63CA3" },
-    // "selfemp": { desc: "Self-employed<sup>*</sup>", color: "#c38014" },
-    // "publictrans": { desc: " Primarily Pub. Trans. to Work<sup>*</sup>", color: "#E24062" },
-    // "income_moremed": { desc: "Personal Income Above Nat. Med.", color: "#5BB923" },
-    // "inpoverty": { desc: "Below Poverty Line", color: "#555" },
-    // "isveteran": { desc: "Veteran", color: "#B190D0" },
-    // "bornoutus": { desc: "Born Outside US", color: "#bcc832" },
-    // "diffmovecog": { desc: "Cog. or Phys. Difficulty", color: "#ee7b9c" },
-    // "diffhearvis": { desc: "Hearing or Vis. Difficulty", color: "#f299b3"},
-    // "widowed": { desc: "Widowed", color: "#01d99f" },
-}
-
-
   var data = [];
   var val
   var talk_categories = ["art"];
