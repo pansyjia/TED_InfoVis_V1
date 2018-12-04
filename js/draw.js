@@ -7,20 +7,20 @@
 
 
   var category_colors = {
-    "Beautiful": "orange",
-    "Courageous": "orange",
-    "Fascinating": "orange",
-    "Funny": "orange",
-    "Informative'": "orange",
-    "Ingenious": "orange",
-    "Inspiring": "orange",
-    "Jaw.dropping": "orange",
-    "Persuasive": "orange",
-    "Confusing": "blue",
-    "Longwinded": "blue",
-    "Obnoxious": "#blue",
-    "Unconvincing": "blue",
-    "OK": "yellow"
+    "Beautiful": "#5D7EE6",
+    "Courageous": "#DFD041",
+    "Fascinating": "#39CEF4",
+    "Funny": "#F97F33",
+    "Informative'": "#D441A2",
+    "Ingenious": "#C27F25",
+    "Inspiring": "#E04364",
+    "Jaw.dropping": "#5EB731",
+    "Persuasive": "#555555",
+    "Confusing": "#B092CE",
+    "Longwinded": "#BCC641",
+    "Obnoxious": "#EC7C9C",
+    "Unconvincing": "#F09AB3",
+    "OK": "#23D8A0"
   }
 
 
